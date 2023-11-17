@@ -1,8 +1,7 @@
 package com.example.demo.repository;
 
+import com.example.demo.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-// ?과 !에 각각 뭐가 들어갈까요?
-// public interface MemberRepository extends JpaRepository<?, !> {
-
-// }
+public interface MemberRepository extends JpaRepository<Member, Long> {
+}
