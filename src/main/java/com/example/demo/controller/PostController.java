@@ -18,6 +18,10 @@ import com.example.demo.service.PostService;
 public class PostController {
 
 	private final PostService postService;
+	@GetMapping
+	public String testPage() {
+		return "HELLO!";
+	}
 
 	@Autowired
 	public PostController(PostService postService) {

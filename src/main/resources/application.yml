@@ -1,11 +1,21 @@
+# database 연동 설정
 spring:
-  h2:
-    console:
-      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/umcTestDB?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 1234
+  thymeleaf:
+    cache: false
 
+  # spring data jpa 설정
   jpa:
-    properties:
-      hibernate:
-        # show formatted sql
-        format_sql: true
-        show_sql: true
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      hbm2ddl-auto: create
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
