@@ -21,9 +21,13 @@ public class Comment {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public Comment(String content, Member member) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    public Comment(String content, Member member, Post post) {
         this.content = content;
         this.member = member;
+        this.post = post;
     }
-
 }

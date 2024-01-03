@@ -1,9 +1,6 @@
 package com.example.demo.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -14,9 +11,23 @@ public class Post {
 	private String text;
 	private String title;
 
-	public Post(String title, String text) {
-		this.title = title;
+	private boolean active;
+
+	//외래키 설정
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Member member;
+
+	//이 객체를 만들 때 mapping
+	public Post(String text, String title, Member member) {
 		this.text = text;
+		this.title = title;
+		this.member = member;
+		this.active = true;
+	}
+
+	public void delete() {
+		this.active = false;
+		//조회할 때 active가 false인 걸 제외시킴 (DB에 남아있긴 함)
 	}
 
 	public Long getId() {
